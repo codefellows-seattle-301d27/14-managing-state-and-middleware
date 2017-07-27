@@ -24,7 +24,7 @@ var app = app || {};
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
   // This is a function which takes a callback as a parameter, which is called at the end.  It makes an ajax call in the form of a get query for articles using the jquery function, and then calls the loadAll function from earlier on the result.
   // It is called by articleController.js, adminView.js, articleView.js, articleController.js.
-  
+
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
@@ -60,6 +60,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This function takes an array of author, then returns a new array with the total word count of each author.  It is called in the adminView.js, and later on this page.  It calls the allAuthors function on this page to get the starting array, then uses a combination of built-in functions map, filter, and reduce to get the word count.  It also calls length to count.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
