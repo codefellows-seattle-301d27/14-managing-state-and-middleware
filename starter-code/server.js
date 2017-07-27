@@ -21,7 +21,9 @@ app.use(express.static('./public'));
 
 
 // COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (put your response in a comment here)
+/* ANSWERS:
+  The function is requesting info from GitHub using our concealed token. It is called from any page named /github/* and serves to hide our token and route the github request.
+**********************************************************************************/
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -32,7 +34,9 @@ function proxyGitHub(request, response) {
 
 
 // COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+/* ANSWERS:
+  The route is delivering the html mentioned in the sendFile method. The first one comes from the admin page and delivers up the new.html. The second one also comes from the admin page and delivers up the admin.html
+************************************************************/
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
