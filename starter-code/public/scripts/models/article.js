@@ -62,7 +62,10 @@ var app = app || {};
                       }, []);
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This function counts all the words for each unique author.
+  // This is being called in the adminView.js
+  // It calls the array methods Filter, Map, Reduce and  allAuthor() on Article which lives on the article.js
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
