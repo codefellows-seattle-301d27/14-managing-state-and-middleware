@@ -5,7 +5,7 @@ var app = app || {};
   const articleController = {};
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-  // (put your response in a comment here)
+  // RESPONSE: This is the controller for the ARTICLES page. It calls articleView.index which inits the articles/index page. This function is called by the routes.js page when the user goes to the index/articles page, or when the user goes to one of the cateogry/author/single-articles pages.
   articleController.index = (ctx) => app.articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:
