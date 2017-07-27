@@ -113,7 +113,9 @@ app.post('/articles', function(request, response) {
 
 
 // COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+/* ANSWERS:
+    When a user types in a new blog post on the new page, the put method below updates two tables: the authors table and the articles table. It adds a new row to each of these tables with the info provided below. Then it confirms that the update is complete.
+**********************************************************************************/
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
