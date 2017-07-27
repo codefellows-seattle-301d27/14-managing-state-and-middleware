@@ -36,6 +36,8 @@ function proxyGitHub(request, response) {
 
 // COMMENT: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+// The /new route gets the new.html file when a user requests the /new route.
+// est 5min act 5min
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
