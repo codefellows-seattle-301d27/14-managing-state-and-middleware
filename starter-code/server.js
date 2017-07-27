@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 // const conString = 'postgres://USERNAME:PASSWORD@HOST:PORT';
 const conString = `postgres://postgres:${process.env.PG_PASSWORD}@localhost:5432/kilovolt`;
-// TODO: Don't forget to set your own conString
+// DONE: Don't forget to set your own conString
 // est 5min act 15min. forgot database name at the end. Hint string above is for mac only.
 const client = new pg.Client(conString);
 client.connect();
@@ -19,9 +19,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
-
 // COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
 // (put your response in a comment here)
+// This function is being used as the callback function in line 37.
+// We need the proxyGitHub function to hide our token from the user.
+// It receives a request from app.get on line 37 when the /github/* route is requested.
+// est 5min act 10min
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
