@@ -57,6 +57,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // RESPONSE: It is getting an array of objects, each with an author name and the amount of words that author has across all articles. It is called int he initAdminPage view. This function calls Article.allAuthors() to get an array of authors to start with. allAuthors lives in article.js.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
