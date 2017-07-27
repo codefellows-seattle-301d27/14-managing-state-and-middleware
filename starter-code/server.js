@@ -115,6 +115,10 @@ app.post('/articles', function(request, response) {
 
 // COMMENT: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+// articles/:id is an UPDATE route where the user can edit articles and tell
+// the client program to UPDATE them in the database. It receives a request
+// from the user.
+// est 5min act 5min
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
