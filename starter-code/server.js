@@ -8,7 +8,9 @@ const requestProxy = require('express-request-proxy'); // REVIEW: We've added a 
 const PORT = process.env.PORT || 3000;
 const app = express();
 // const conString = 'postgres://USERNAME:PASSWORD@HOST:PORT';
-const conString = ''; // TODO: Don't forget to set your own conString
+const conString = `postgres://postgres:${process.env.PG_PASSWORD}@localhost:5432/kilovolt`;
+// DONE: Don't forget to set your own conString
+// est 5min act 15min. forgot database name at the end. Hint string above is for mac only.
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', err => console.error(err));
@@ -17,9 +19,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
-
 // COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
 // (put your response in a comment here)
+// This function is being used as the callback function in line 37.
+// We need the proxyGitHub function to hide our token from the user.
+// It receives a request from app.get on line 37 when the /github/* route is requested.
+// est 5min act 10min
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -31,6 +36,8 @@ function proxyGitHub(request, response) {
 
 // COMMENT: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+// The /new route gets the new.html file when a user requests the /new route.
+// est 5min act 5min
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -108,6 +115,10 @@ app.post('/articles', function(request, response) {
 
 // COMMENT: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+// articles/:id is an UPDATE route where the user can edit articles and tell
+// the client program to UPDATE them in the database. It receives a request
+// from the user.
+// est 5min act 5min
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
