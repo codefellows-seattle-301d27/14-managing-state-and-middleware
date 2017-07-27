@@ -6,6 +6,10 @@ var app = app || {};
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
   // (put your response in a comment here)
+  // the index function here is takes the articles inside the context and displays them.
+  // This is being called in routes.js
+  // This doesnt call anything else because it doesnt have a callback in the method.
+
   articleController.index = (ctx) => app.articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:
