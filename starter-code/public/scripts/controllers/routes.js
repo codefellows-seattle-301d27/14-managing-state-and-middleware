@@ -13,4 +13,5 @@ page('/author/:authorName', app.articleController.loadByAuthor, app.articleContr
 page('/category/:categoryName', app.articleController.loadByCategory, app.articleController.index);
 
 // COMMENT: What is this function doing?
+// RESPONSE: page() initiates the routes defined in the other page() functions in this file.
 page();
