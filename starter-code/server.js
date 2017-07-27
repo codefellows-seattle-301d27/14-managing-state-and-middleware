@@ -20,6 +20,9 @@ app.use(express.static('./public'));
 
 // COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
 // (put your response in a comment here)
+// This function is setting up a proxy for our github requests and allows us to move our token to the process.env
+// We need it for security reasons to hide our token from accessing it in the network tab in our developer tool
+// It is recieving the request from repos.requestRepos inside repo.js.
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
