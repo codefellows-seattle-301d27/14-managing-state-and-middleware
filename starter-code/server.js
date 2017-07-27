@@ -112,6 +112,7 @@ app.post('/articles', function(request, response) {
 
 // COMMENT: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+// This route allows the client to update the individual articles. It recieves a request when Article.prototype.updateRecords is called which is located in article.js
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
