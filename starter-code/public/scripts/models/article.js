@@ -78,6 +78,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // RESPONSE: This functiond eletes articles from the database. This function is never called... it would delete allt he articles. The only function it calls it the callback. Since this function is never called, we don't know what that callback would be. 
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
