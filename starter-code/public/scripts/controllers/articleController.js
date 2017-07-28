@@ -19,8 +19,12 @@ var app = app || {};
       next();
     };
 
-    // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    // COMMENT: What is this function doing? Where is it called?
+    // Does it call any other functions, and if so, in what file(s) do those function(s) live?
     // (put your response in a comment here)
+    // findWhere() runs a search query in the database. It is called here and
+    // later on this page. It defined in article.js. It calls $.get().
+    // est 5min act 5min
     app.Article.findWhere('article_id', ctx.params.article_id, articleData);
   };
 
