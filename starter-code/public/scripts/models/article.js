@@ -76,9 +76,7 @@ var app = app || {};
  Articles.all.filter() loop. The .map() method then takes the body property of each article and returns
  an array of matched elements and calls .length() on them to get the number of elements(words) in the array.
 Then .reduce() is called on the resulting array which returns an integer value equal to the number of words
-in the array. The object is then returned.
-
-*/
+in the array. The object is then returned. This function is being called in adminView.js.*/
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -99,6 +97,10 @@ in the array. The object is then returned.
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+
+  /* This method is an anonymous function that takes a callback as a parameter. Inside the function
+  an ajax call is made to the /articles endpoint using the DELETE method.  The deleted value is logged to the console and then the callback is invoked. DONE */
+
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
