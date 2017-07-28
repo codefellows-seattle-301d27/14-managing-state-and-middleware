@@ -5,6 +5,7 @@ var app = app || {};
   const articleView = {};
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // render is a function that takes in a specific article as a parameter and which targets the #article-template text and finally compiles it into a Handlebars template which is being stored in the variable 'template'. It then decides if the article has been published or not and how long ago it was published. If it is still a draft, it is labeled as a draft. Afterwards, the article is then returned as it is inserted through the Handlebars function.
   const render = function(article) {
     let template = Handlebars.compile($('#article-template').text());
 
