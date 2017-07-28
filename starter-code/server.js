@@ -20,8 +20,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
+// DONE: What is this function doing? Why do we need it? Where does it receive a request from?
 // (put your response in a comment here)
+// This is a proxy end poin that creates a bridge thru the server between the github api and the our client.
+// We need it because we want to hide our private GITHUB_TOKEN from the user. The request comes from the client.
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -31,8 +33,11 @@ function proxyGitHub(request, response) {
 }
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
+// DONE: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+// This new route send the new.html page to the user when they request /new
+// The request from comes from the client which is the web brower.
+
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -110,6 +115,9 @@ app.post('/articles', function(request, response) {
 
 // COMMENT: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+// This function updates the aritcles by id on the database. It makes two table updates, one to the authors table and another to the articles table. If successfull it send back a response of "update complete"
+// Currently this is not being called in the interface.
+// The method on the client is Article.prototype.updateRecord
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
