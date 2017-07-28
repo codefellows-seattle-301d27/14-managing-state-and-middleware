@@ -5,6 +5,7 @@ var app = app || {};
   const newArticle = {};
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This function is to create a new article out of the forms field, it is called on load since it is placed in an iife. So it is called on line 59 right in this file. And this function calls: newArticle.create, and newArticle.submit on events.
   newArticle.initNewArticlePage = function() {
     $('.tab-content').show();
     $('#export-field').hide();

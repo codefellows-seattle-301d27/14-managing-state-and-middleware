@@ -14,12 +14,14 @@ var app = app || {};
   // REVIEW: With ES6 arrow functions, if the function only has one parameter, you don't need parentheses.
   //         This is similar to saying Article.loadAll = function(rows).
     // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    // RESPONSE: This is the function that loads all of the article data into a usable variable. It sorts the data and then maps it to new Article elements, which are saved into Article.all. It's not calling any other custom functions; just built in ones.
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     Article.all = rows.map(ele => new Article(ele));
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //RESPONSE: This is the function that LOADS all of the article data. It initiates an AJAX call to the backend, and THEN it calls the Article.loadAll and the callback function, which is defined when fetchAll is called, in the ArticleController.
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
@@ -55,6 +57,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // RESPONSE: It is getting an array of objects, each with an author name and the amount of words that author has across all articles. It is called int he initAdminPage view. This function calls Article.allAuthors() to get an array of authors to start with. allAuthors lives in article.js.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -75,6 +78,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // RESPONSE: This functiond eletes articles from the database. This function is never called... it would delete allt he articles. The only function it calls it the callback. Since this function is never called, we don't know what that callback would be. 
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
