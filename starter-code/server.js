@@ -8,7 +8,9 @@ const requestProxy = require('express-request-proxy'); // REVIEW: We've added a 
 const PORT = process.env.PORT || 3000;
 const app = express();
 // const conString = 'postgres://USERNAME:PASSWORD@HOST:PORT';
-const conString = ''; // TODO: Don't forget to set your own conString
+const conString = `postgres://postgres:${process.env.PG_PASSWORD}@localhost:5432/kilovolt`;
+// DONE: Don't forget to set your own conString
+// estimated time 1 minute | actual time 1 minute
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', err => console.error(err));
@@ -18,8 +20,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (put your response in a comment here)
+// DONE COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
+/* ANSWERS:
+  The function is requesting info from GitHub using our concealed token. It is called from any page named /github/* and serves to hide our token and route the github request.
+**********************************************************************************/
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -29,8 +33,10 @@ function proxyGitHub(request, response) {
 }
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// DONE COMMENT: What is this route doing? Where does it receive a request from?
+/* ANSWERS:
+  The route is delivering the html mentioned in the sendFile method. The first one comes from the admin page and delivers up the new.html. The second one also comes from the admin page and delivers up the admin.html
+************************************************************/
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -106,8 +112,10 @@ app.post('/articles', function(request, response) {
 });
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// DONE COMMENT: What is this route doing? Where does it receive a request from?
+/* ANSWERS:
+    When a user types in a new blog post on the new page, the put method below updates two tables: the authors table and the articles table. It adds a new row to each of these tables with the info provided below. Then it confirms that the update is complete.
+**********************************************************************************/
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
