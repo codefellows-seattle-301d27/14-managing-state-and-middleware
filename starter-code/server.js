@@ -8,7 +8,9 @@ const requestProxy = require('express-request-proxy'); // REVIEW: We've added a 
 const PORT = process.env.PORT || 3000;
 const app = express();
 // const conString = 'postgres://USERNAME:PASSWORD@HOST:PORT';
-const conString = ''; // TODO: Don't forget to set your own conString
+// DONE: Don't forget to set your own conString
+// Expected 1 min || Actual 30 sec
+const conString = `postgres://postgres:${process.env.PG_PASSWORD}@localhost:5432/kilovolt`;
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', err => console.error(err));
@@ -19,7 +21,7 @@ app.use(express.static('./public'));
 
 
 // COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (put your response in a comment here)
+//This function is talking to the github API and passing it a token, stored as an environmental variable, so that it can grab what it needs which are set as request parameters which also corresponds with the URL path that we want to go to.
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -30,7 +32,7 @@ function proxyGitHub(request, response) {
 
 
 // COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// The route receives a request from the homepage/user and it is routing them to the appropriate html page path, so /new routes to new.html and /admin routes to admin.html and /github/* will route to whatever proxyGitHub gives to it.
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -107,7 +109,7 @@ app.post('/articles', function(request, response) {
 
 
 // COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// Put receives a request from the model via the method "updateRecord" in the Article object to update the data in the database by using the properties in the request body.
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
