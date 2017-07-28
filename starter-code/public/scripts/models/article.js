@@ -66,7 +66,7 @@ var app = app || {};
 
   // COMMENT: DONE What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
   /* ANSWER:
-  1) This function takes the subset of articles created by a particular author and adds up the number of words in the body(ies) of the article(s).
+  1) This function takes the subset of articles created by each author and adds up the number of words in the body(ies) of the article(s) and returns the array of counts for all authors.
   2) This function is called in adminView.js.
   3) This function doesn't call any other functions.
   */

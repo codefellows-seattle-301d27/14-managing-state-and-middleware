@@ -19,8 +19,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
+// COMMENT: DONE What is this function doing? Why do we need it? Where does it receive a request from?
 // (put your response in a comment here)
+//1.This function operates as a proxy router for requesting information from the github api.
+//2.We need this function to route HTTP requests to the github api.
+//3.The function receives its request below in any GET requests routed to /github.
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -30,8 +33,10 @@ function proxyGitHub(request, response) {
 }
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
+// COMMENT: DONE What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+//1. This route is sending the user to the new HTML web page.
+//2. This route receives the request any time a user adds '/new' as a suffix to the url.
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -107,8 +112,10 @@ app.post('/articles', function(request, response) {
 });
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
+// COMMENT: DONE What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+//1. This is an update request used to alter article and author data in the database.
+//2. This route is not used; however if it were it would be through a method like an $ajax request.
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
