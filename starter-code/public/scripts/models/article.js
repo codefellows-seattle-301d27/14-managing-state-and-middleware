@@ -85,7 +85,8 @@ var app = app || {};
     }
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This trucates a table a delete method. It calls a supplied callback. It isn't used at the moment.
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
