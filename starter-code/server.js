@@ -117,7 +117,7 @@ app.post('/articles', function(request, response) {
 // (put your response in a comment here)
 // This function updates the aritcles by id on the database. It makes two table updates, one to the authors table and another to the articles table. If successfull it send back a response of "update complete"
 // Currently this is not being called in the interface.
-// The method on the client tis Article.prototype.updateRecord
+// The method on the client is Article.prototype.updateRecord
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
