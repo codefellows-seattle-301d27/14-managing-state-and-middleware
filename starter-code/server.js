@@ -18,8 +18,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
+//Done! COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
 // (put your response in a comment here)
+//This function is used to setup a proxy for Github. We need it to protect the Github token. It recieves a request from the github API.
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -29,8 +30,9 @@ function proxyGitHub(request, response) {
 }
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
+//Done! COMMENT: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+//This route is request to new.html,admin.html and github page with respective call back functions.
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -106,8 +108,9 @@ app.post('/articles', function(request, response) {
 });
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
+//Done! COMMENT: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+//This route is used to update the author and articles tables.
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
