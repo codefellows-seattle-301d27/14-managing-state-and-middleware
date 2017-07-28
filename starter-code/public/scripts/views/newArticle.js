@@ -4,7 +4,10 @@ var app = app || {};
 (function(module) {
   const newArticle = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  /* ANSWERS:
+      This function intitializes a new article page. It is called at the bottom of this page. It calls the jQuery methods show, hide, on, and select and they live in his big house on the hill.
+  *************************************************************************/
   newArticle.initNewArticlePage = function() {
     $('.tab-content').show();
     $('#export-field').hide();
