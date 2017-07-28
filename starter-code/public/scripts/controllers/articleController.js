@@ -4,8 +4,10 @@ var app = app || {};
 (function(module) {
   const articleController = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-  // (put your response in a comment here)
+  // DONE COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  /* ANSWERS:
+      This function calls the articleView.index function to render all the articles to the page. It is called on the routes.js file. It calls the articleView.index function which articleView.js file.
+  *************************************************************************/
   articleController.index = (ctx) => app.articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:
@@ -15,8 +17,10 @@ var app = app || {};
       next();
     };
 
-    // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-    // (put your response in a comment here)
+    // DONE COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    /* ANSWERS:
+        This function grabs the article_id from the articles table to load only that article. It's being called right where it sits and in two other places on this page to load the author and the category. It does not call any other functions... sort of. It does include calls to the jQuery functions .get/.then and includes a callback function.
+    *************************************************************************/
     app.Article.findWhere('article_id', ctx.params.article_id, articleData);
   };
 
