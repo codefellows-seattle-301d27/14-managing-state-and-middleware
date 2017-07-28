@@ -14,12 +14,18 @@ var app = app || {};
   // REVIEW: With ES6 arrow functions, if the function only has one parameter, you don't need parentheses.
   //         This is similar to saying Article.loadAll = function(rows).
     // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    /* ANSWERS:
+        This function loads each article, sorts them by date published, and creates new Article objects. It is being called in the fetchAll function below. It also calls the sort and map methods that live on every array.
+    *************************************************************************/
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     Article.all = rows.map(ele => new Article(ele));
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  /* ANSWERS:
+      This function gets the articles from the database and then loads them using the function above. It's being called in articleController.js and adminView.js. It's using the jQuery .get / .then methods, the Article.loadAll function from above, and the recursive callback function.
+  *************************************************************************/
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
