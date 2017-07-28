@@ -12,5 +12,6 @@ page('/author', '/');
 page('/author/:authorName', app.articleController.loadByAuthor, app.articleController.index);
 page('/category/:categoryName', app.articleController.loadByCategory, app.articleController.index);
 
-// COMMENT: What is this function doing?
+// COMMENT: DONE What is this function doing?
+// ANSWER: This is the call to run the Page module so our front-end routing (all the stuff above) will work.
 page();

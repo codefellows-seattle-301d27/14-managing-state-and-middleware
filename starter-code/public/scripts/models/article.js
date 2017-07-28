@@ -13,13 +13,23 @@ var app = app || {};
 
   // REVIEW: With ES6 arrow functions, if the function only has one parameter, you don't need parentheses.
   //         This is similar to saying Article.loadAll = function(rows).
-    // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    // COMMENT: DONE What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  /* ANSWER:
+  1) This function maps article data into Article objects and attaches them as an array to Article.all.
+  2) This function is called below in Article.fetchAll() here in article.js.
+  3) This function calls the Article constructor for each row of article data recieved from article.fetchAll().
+  */
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     Article.all = rows.map(ele => new Article(ele));
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // COMMENT: DONE What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  /* ANSWER:
+  1) This function is asking server.js for article data, which it then hands off to Article.loadAll() to convert into Article objects.
+  2) This function is called in articleController.js and adminView.js.
+  3) This function calls Article.loadAll() and then a callback (view) method once it is done.
+  */
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
@@ -54,7 +64,12 @@ var app = app || {};
                       }, []);
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // COMMENT: DONE What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  /* ANSWER:
+  1) This function takes the subset of articles created by each author and adds up the number of words in the body(ies) of the article(s) and returns the array of counts for all authors.
+  2) This function is called in adminView.js.
+  3) This function doesn't call any other functions.
+  */
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -74,7 +89,12 @@ var app = app || {};
     }
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // COMMENT: DONE What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  /* ANSWER:
+  1) This function asks server.js to delete all the articles from the database.
+  2) This function is never called.
+  3) It calls a callback method when it's complete.
+  */
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
