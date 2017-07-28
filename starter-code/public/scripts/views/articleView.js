@@ -4,7 +4,8 @@ var app = app || {};
 (function(module) {
   const articleView = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // ANSWER: This function is loading the article template into the template function. It's being called in the articleView.index at the bottom of this page. It calls several other functions: .compile() from Handlebars, .text() jquery method, parseInt() which lives in the object, marked() from marked.js, it's also recursively calling template.
   const render = function(article) {
     let template = Handlebars.compile($('#article-template').text());
 
