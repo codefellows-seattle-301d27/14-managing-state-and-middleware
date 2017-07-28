@@ -14,12 +14,14 @@ var app = app || {};
   // REVIEW: With ES6 arrow functions, if the function only has one parameter, you don't need parentheses.
   //         This is similar to saying Article.loadAll = function(rows).
     // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    // The function is loading all of the articles from the database, sorts it, and then maps it to a new article object. It's called below in the fetchAll. It doesn't call any other functions.
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     Article.all = rows.map(ele => new Article(ele));
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // Fetch gets the information from the page given by the server and uses a callback function. It is being called in articleController with a callback function articleData, a context function for articleController.loadAll which lives in articleController.js. And adminView with the callback function adminView.initAdminPage passed to it which lives in adminView.js. It is using loadAll which is defined above.
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
@@ -55,6 +57,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // It counts the number of words per author user array methods to filter per specific author and reduce as a counter for words and is being called in adminView to display the number words written per author.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -75,6 +78,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This uses the express delete method to remove an article from the database. There is a callback that could be passed in to it. It's not being called right now, it is simply a functionality that can be called when needed to delete from the database.
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
