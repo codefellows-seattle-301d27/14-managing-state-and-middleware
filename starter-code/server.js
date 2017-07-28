@@ -32,7 +32,7 @@ function proxyGitHub(request, response) {
 
 //Done! COMMENT: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
-//This route is request to new.html,admin.html and github page with respective call back functions.
+//This route is routing from /new to new.html and/admin to admin.html as well as /github/* to what proxyGitHub directs it to. It receive a request from the client side.
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -110,7 +110,7 @@ app.post('/articles', function(request, response) {
 
 //Done! COMMENT: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
-//This route is used to update the author and articles tables.
+//This route is used to update the author and articles tables. It receives a request from client.
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
