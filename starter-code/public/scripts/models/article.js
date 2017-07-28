@@ -77,7 +77,7 @@ var app = app || {};
     }
   };
 
-  // COMMENT: done What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // COMMENT: DONE What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
   // (This function deletes articles from the table and gives a response as to what the status is (fail or success))
   Article.truncateTable = callback => {
     $.ajax({
