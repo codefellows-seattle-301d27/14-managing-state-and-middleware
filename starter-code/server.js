@@ -20,8 +20,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
+// DONE: What is this function doing? Why do we need it? Where does it receive a request from?
 // (put your response in a comment here)
+// This is a proxy end poin that creates a bridge thru the server between the github api and the our client.
+// We need it because we want to hide our private GITHUB_TOKEN from the user. The request comes from the client.
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({

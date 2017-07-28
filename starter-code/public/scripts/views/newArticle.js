@@ -4,7 +4,10 @@ var app = app || {};
 (function(module) {
   const newArticle = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // DONE: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+
+  // THis function sets up the article page. It all the show, hide and "on" fucntion on jquery object which are on the jquery object that is tagged on the index page. That is return by the dollar sign fucntion $.
+
   newArticle.initNewArticlePage = function() {
     $('.tab-content').show();
     $('#export-field').hide();
