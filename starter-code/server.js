@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
+// DONE COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
 /* ANSWERS:
   The function is requesting info from GitHub using our concealed token. It is called from any page named /github/* and serves to hide our token and route the github request.
 **********************************************************************************/
@@ -33,7 +33,7 @@ function proxyGitHub(request, response) {
 }
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
+// DONE COMMENT: What is this route doing? Where does it receive a request from?
 /* ANSWERS:
   The route is delivering the html mentioned in the sendFile method. The first one comes from the admin page and delivers up the new.html. The second one also comes from the admin page and delivers up the admin.html
 ************************************************************/
@@ -112,7 +112,7 @@ app.post('/articles', function(request, response) {
 });
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
+// DONE COMMENT: What is this route doing? Where does it receive a request from?
 /* ANSWERS:
     When a user types in a new blog post on the new page, the put method below updates two tables: the authors table and the articles table. It adds a new row to each of these tables with the info provided below. Then it confirms that the update is complete.
 **********************************************************************************/
