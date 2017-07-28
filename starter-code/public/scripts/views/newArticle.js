@@ -5,6 +5,7 @@ var app = app || {};
   const newArticle = {};
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // initNewArticlePage renders the forms for creating and entering in a new article. It captures all the properties of the currently entered article and submits it into the model. This is being called at the end of this page and ends up calling out newArticle.create and newArticle.submit which also both live on this page.
   newArticle.initNewArticlePage = function() {
     $('.tab-content').show();
     $('#export-field').hide();
