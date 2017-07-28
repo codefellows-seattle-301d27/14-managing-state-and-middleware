@@ -13,4 +13,5 @@ page('/author/:authorName', app.articleController.loadByAuthor, app.articleContr
 page('/category/:categoryName', app.articleController.loadByCategory, app.articleController.index);
 
 // COMMENT: What is this function doing?
+//This initializes the pageJS module to activate the routes that are listed above. 
 page();
