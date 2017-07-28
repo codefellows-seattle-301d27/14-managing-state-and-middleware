@@ -5,7 +5,11 @@ var app = app || {};
   const repos = {};
   repos.all = [];
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // COMMENT: What is this function doing? Where is it called?
+  // Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // requestRepos() get repositiories from github, then it adds them to repos.all,
+  // and then it makes a callback function with app.repoView.index as the argument in aboutController.js.
+  // est 5min act 5min
   repos.requestRepos = function(callback) {
     $.get('/github/user/repos')
     .then(data => repos.all = data, err => console.error(err))
