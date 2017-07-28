@@ -13,7 +13,9 @@ var app = app || {};
 
   const render = Handlebars.compile($('#repo-template').text());
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //Done! COMMENT: What is this function doing? Where is it called?
+  // Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  //This function displays a list of all repos. It calls append(), .map(), .with() and ui() functions. ui() function lives in repoView.js.
   repoView.index = function() {
     ui();
 
