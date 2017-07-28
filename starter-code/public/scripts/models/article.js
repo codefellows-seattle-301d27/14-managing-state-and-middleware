@@ -14,12 +14,17 @@ var app = app || {};
   // REVIEW: With ES6 arrow functions, if the function only has one parameter, you don't need parentheses.
   //         This is similar to saying Article.loadAll = function(rows).
     // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+    // Article.loadall is a function which takes an array of records from the database as a parameter called "rows," then sorts those records by date, then uses the map function to construct a new array of new Articles which are constructed from the individual elements of the original array.
+    // It is called by fetchAll on this page, which is called by the admin page and article controller.  It calls sort, map, and the Date and Article constructor.  All of these are built in, except for the last one, which is defined earlier on this page.
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
     Article.all = rows.map(ele => new Article(ele));
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This is a function which takes a callback as a parameter, which is called at the end.  It makes an ajax call in the form of a get query for articles using the jquery function, and then calls the loadAll function from earlier on the result.
+  // It is called by articleController.js, adminView.js, articleView.js, articleController.js.
+
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
@@ -55,6 +60,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This function takes an array of author, then returns a new array with the total word count of each author.  It is called in the adminView.js, and later on this page.  It calls the allAuthors function on this page to get the starting array, then uses a combination of built-in functions map, filter, and reduce to get the word count.  It also calls length to count.
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
       return {
@@ -75,6 +81,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // This deletes the data in the table via ajax.  It is not currently called anywhere, and it uses the jquery function.
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
