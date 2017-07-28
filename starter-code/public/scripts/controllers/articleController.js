@@ -4,8 +4,11 @@ var app = app || {};
 (function(module) {
   const articleController = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-  // (put your response in a comment here)
+  // COMMENT:DONE What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+
+  //articleController.index is passing in the context object to the method
+  //articleView.index which uses the ctx.articles property. It calls the
+  //articleView.index method, which is located in articleView.js
   articleController.index = (ctx) => app.articleView.index(ctx.articles);
 
   // REVIEW: Middleware for grabbing one article by ID:
@@ -15,8 +18,13 @@ var app = app || {};
       next();
     };
 
-    // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-    // (put your response in a comment here)
+    // COMMENT:DONE What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+
+    //The custom findWhere function is called which makes a $.get() request at the route `/articles/find`,
+    //findWhere() is then passed a field of `article_id`, given a value of article_id from the context object,
+    //and then articleData is called which is a function within the articleController.loadById function that
+    //takes one article and sets it to the ctx.articles property.
+
     app.Article.findWhere('article_id', ctx.params.article_id, articleData);
   };
 
