@@ -33,8 +33,11 @@ function proxyGitHub(request, response) {
 }
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
+// DONE: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+// This new route send the new.html page to the user when they request /new
+// The request from comes from the client which is the web brower.
+
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -112,6 +115,9 @@ app.post('/articles', function(request, response) {
 
 // COMMENT: What is this route doing? Where does it receive a request from?
 // (put your response in a comment here)
+// This function updates the aritcles by id on the database. It makes two table updates, one to the authors table and another to the articles table. If successfull it send back a response of "update complete"
+// Currently this is not being called in the interface.
+// The method on the client tis Article.prototype.updateRecord
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
