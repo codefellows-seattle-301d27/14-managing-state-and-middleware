@@ -12,5 +12,6 @@ page('/author', '/');
 page('/author/:authorName', app.articleController.loadByAuthor, app.articleController.index);
 page('/category/:categoryName', app.articleController.loadByCategory, app.articleController.index);
 
-// COMMENT: What is this function doing?
+// DONE COMMENT: What is this function doing?
+// ANSWER: It's calling on page.js to do it's job and call all of the above routes.
 page();
