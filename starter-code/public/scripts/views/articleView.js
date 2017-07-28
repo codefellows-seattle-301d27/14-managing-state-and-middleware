@@ -4,7 +4,12 @@ var app = app || {};
 (function(module) {
   const articleView = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // COMMENT: What is this function doing? Where is it called?
+  // Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // render() is a function that takes an individual article as a parameters, and outputs html
+  // based on a Handlebars template. It is called by ArticleView.index and eventually append() to render each article to the DOM
+  // It calls Handlebars.comlile(), jQuery, Date, and marked.
+  // est 5min act 15min
   const render = function(article) {
     let template = Handlebars.compile($('#article-template').text());
 
