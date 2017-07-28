@@ -21,7 +21,7 @@ var app = app || {};
   };
 
   // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
-  // Fetch gets the information from the page given by the server and uses a callback function. It is being called in articleController and adminView with callback functions passed to it. It is calling loadAll which is defined above.
+  // Fetch gets the information from the page given by the server and uses a callback function. It is being called in articleController with a callback function articleData, a context function for articleController.loadAll which lives in articleController.js. And adminView with the callback function adminView.initAdminPage passed to it which lives in adminView.js. It is using loadAll which is defined above.
   Article.fetchAll = callback => {
     $.get('/articles')
     .then(
