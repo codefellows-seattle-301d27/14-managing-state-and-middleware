@@ -10,6 +10,7 @@ var app = app || {};
 //then calls the .then() method to call an arrow function that populates the repos.all array
 //with the returned repo objects. It's called in the aboutController and the callback that it's
 // passed is repoView.index() which renders the repo page.
+
   repos.requestRepos = function(callback) {
     $.get('/github/user/repos')
     .then(data => repos.all = data, err => console.error(err))
