@@ -4,7 +4,11 @@ var app = app || {};
 (function(module) {
   const newArticle = {};
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // COMMENT:DONE What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+//This function hides all DOM elements irrelevant to showing a new article page. It also
+//shows dom elements relevant to displaying a new article page. when the 'article-json' section
+//is focused on, it is selected.
+//initNewArticlePage() is called at the end of this module.
   newArticle.initNewArticlePage = function() {
     $('.tab-content').show();
     $('#export-field').hide();

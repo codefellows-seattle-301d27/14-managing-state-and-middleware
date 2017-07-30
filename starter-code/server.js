@@ -8,7 +8,7 @@ const requestProxy = require('express-request-proxy'); // REVIEW: We've added a 
 const PORT = process.env.PORT || 3000;
 const app = express();
 // const conString = 'postgres://USERNAME:PASSWORD@HOST:PORT';
-const conString = ''; // TODO: Don't forget to set your own conString
+const conString = process.env.PG_PASSWORD || 'postgres://localhost:5342'; // TODO:DONE Don't forget to set your own conString
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', err => console.error(err));
@@ -18,8 +18,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./public'));
 
 
-// COMMENT: What is this function doing? Why do we need it? Where does it receive a request from?
-// (put your response in a comment here)
+// COMMENT:DONE What is this function doing? Why do we need it?
+//Where does it receive a request from?
+/* This proxy function is called and passed the express request and response objects
+it makes a request to the route specified in the URL in order to get the repo JSON objects
+this function recieves a request from repos.requestRepos() */
 function proxyGitHub(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
   (requestProxy({
@@ -29,8 +32,10 @@ function proxyGitHub(request, response) {
 }
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// COMMENT:DONE What is this route doing? Where does it receive a request from?
+/*when a GET request is made to the '/new', '/admin', or '/github' routes will respond with either a
+static html file (new & admin), or will call the proxyGitHub() function, the GET request
+comes from the client in all cases*/
 app.get('/new', (request, response) => response.sendFile('new.html', {root: './public'}));
 app.get('/admin', (request, response) => response.sendFile('admin.html', {root: './public'}));
 app.get('/github/*', proxyGitHub);
@@ -106,8 +111,11 @@ app.post('/articles', function(request, response) {
 });
 
 
-// COMMENT: What is this route doing? Where does it receive a request from?
-// (put your response in a comment here)
+// COMMENT:DONE What is this route doing? Where does it receive a request from?
+/*This route makes a PUT request when the '/articles/:id' URL is hit by the client
+it then makes a SQL query which UPDATES an article by author_id based on what the client
+input when they created their new Article. In creating their new article they called
+the article constructor function and updated the database*/
 app.put('/articles/:id', (request, response) => {
   client.query(`
     UPDATE authors
