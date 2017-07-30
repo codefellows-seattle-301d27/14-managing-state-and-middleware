@@ -66,7 +66,7 @@ var app = app || {};
                       }, []);
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // COMMENT:DONE What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
 
 /* Inside .numWordsByAuthor method the .allAuthors method is called which returns an array of unique
  author names. On that array we call .map() and pass in the author name property as a parameter.
@@ -98,7 +98,12 @@ in the array. The object is then returned.
     }
   };
 
-  // COMMENT: What is this function doing? Where is it called? Does it call any other functions, and if so, in what file(s) do those function(s) live?
+  // COMMENT:DONE What is this function doing? Where is it called?
+  //Does it call any other functions, and if so, in what file(s) do those function(s) live?
+
+//The truncateTable() method on the Article constructor makes a DELETE HTTP request with
+//jQuerys .ajax() method. It follows the '/articles' route and after the request is made
+//runs the callback function that it was passed
   Article.truncateTable = callback => {
     $.ajax({
       url: '/articles',
